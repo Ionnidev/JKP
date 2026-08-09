@@ -623,6 +623,81 @@ header {
   margin-top: 8px;
 }
 
+/* ── Eingeschränkter Video-Showcase ──
+   Eigenes, schmaleres Fenster (50 % Breite) für Videos, die sich nur
+   pausieren/abspielen lassen — kein Suchen, kein Vollbild, stummgeschaltet
+   und ohne Möglichkeit den Ton zu aktivieren. Aufbau von oben nach unten:
+   1 großes Video → Beschreibung → 2 etwas kleinere Videos nebeneinander. */
+.video-showcase {
+  max-width: 50%;
+  margin: 24px auto 0;
+}
+
+.video-showcase .video-desc {
+  color: var(--ink-dim);
+  font-size: 14px;
+  margin: 16px 0 28px;
+}
+
+.video-pair {
+  display: flex;
+  gap: 16px;
+}
+
+.video-frame {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--paper-sunken);
+  aspect-ratio: 16 / 9;
+  flex: 1;
+}
+
+.video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none; /* jegliche native Interaktion unterbinden, nur unser Button steuert */
+}
+
+.video-frame .play-toggle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.video-frame .play-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: background 0.15s, transform 0.15s;
+}
+
+.video-frame .play-toggle:hover .play-icon {
+  background: #fff;
+  transform: scale(1.06);
+}
+
+@media (max-width: 720px) {
+  .video-showcase { max-width: 100%; }
+  .video-pair { flex-direction: column; }
+}
+
 /* ==========================================================================
    Lebenslauf / Timeline
    ========================================================================== */
